@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClientService } from './http-client.service';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { BaseApiResponse } from '../../core/models/baseApiResponse';
 import { ConnectorLinkTokenResponse } from '../../core/models/connector/connectorLinkTokenResponse';
 import { PlaidLinkTokenRequest } from '../../core/models/connector/plaidLinkTokenRequest';

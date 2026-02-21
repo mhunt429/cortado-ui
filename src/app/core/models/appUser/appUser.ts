@@ -1,4 +1,4 @@
-export type AppUser = {
+export interface AppUser {
   id: number;
   accountId: number;
   email: string;
@@ -6,4 +6,4 @@ export type AppUser = {
   lastName: string;
   phoneNumber: string;
   createdDate: Date;
-};
+}

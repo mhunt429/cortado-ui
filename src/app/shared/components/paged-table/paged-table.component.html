@@ -31,12 +31,13 @@
       @for (pageNum of pages; track $index) {
         <button
           class="relative inline-flex items-center px-4 py-2 border text-sm font-medium {{
-            currentPage === pageNum + 1
+            currentPage === pageNum
               ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
               : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
           }}"
-        ></button>
-        currentPage
+        >
+          {{ pageNum }}
+        </button>
       }
       <button
         class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"

@@ -1,4 +1,4 @@
-export type UserRegistration = {
+export interface UserRegistration {
   accountName?: string;
   email: string;
   password: string;
@@ -6,4 +6,4 @@ export type UserRegistration = {
   phoneNumber?: string;
   firstName: string;
   lastName: string;
-};
+}

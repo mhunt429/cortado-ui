@@ -6,19 +6,20 @@
 .message-body {
   :host-context(.dark) & {
     a {
-      color: theme('colors.teal.400');
+      color: theme("colors.teal.400");
       &:hover {
         text-decoration: underline;
       }
     }
   }
   a {
-    color: theme('colors.teal.600');
+    color: theme("colors.teal.600");
     &:hover {
       text-decoration: underline;
     }
   }
-  ul, ol {
+  ul,
+  ol {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     padding-left: 1.5rem;

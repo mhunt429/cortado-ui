@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 export enum AlertType {
   Success,
@@ -12,15 +12,11 @@ export enum AlertType {
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
 })
-export class AlertComponent implements OnInit {
+export class AlertComponent {
   @Input() alertType: AlertType = AlertType.Success;
   AlertType = AlertType;
 
   isVisible = true;
-
-  constructor() {}
-
-  ngOnInit() {}
 
   closeAlert() {
     this.isVisible = false;

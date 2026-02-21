@@ -166,7 +166,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
             ? `${user.firstName} ${user.lastName}`
             : user.email || 'User';
         this.userName.set(fullName);
-      } catch (e) {
+      } catch {
         // If parsing fails, use default
       }
     }

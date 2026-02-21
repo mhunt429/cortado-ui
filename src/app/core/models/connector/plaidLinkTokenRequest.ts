@@ -1,5 +1,5 @@
-export type PlaidLinkTokenRequest = {
+export interface PlaidLinkTokenRequest {
   publicToken: string;
   institutionName: string;
   institutionId: string;
-};
+}

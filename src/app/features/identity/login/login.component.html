@@ -15,7 +15,7 @@
 
     <!-- Card Container -->
     <app-card cardClasses="rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8">
-      @if (loginError != '') {
+      @if (loginError !== '') {
         <div class="mb-6">
           <app-alert [alertType]="AlertType.Error">
             {{ loginError }}

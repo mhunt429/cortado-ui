@@ -1,13 +1,11 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 export interface RequestOptions {
-  headers?: HttpHeaders | { [header: string]: string | string[] };
+  headers?: HttpHeaders | Record<string, string | string[]>;
   params?:
     | HttpParams
-    | { [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean> };
+    | Record<string, string | number | boolean | readonly (string | number | boolean)[]>;
   responseType?: 'json' | 'text' | 'blob';
 }
 
@@ -16,7 +14,7 @@ export interface RequestOptions {
 })
 export class HttpClientService {
   public static API_BASE = '/api';
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
 
   public get$ = <T>(url: string, queryParams?: object, options = {}) =>
     this.http.get<T>(
@@ -24,7 +22,7 @@ export class HttpClientService {
       { ...options, withCredentials: true }
     );
 
-  public getWithResponse$ = <T = any>(url: string, queryParams?: object) =>
+  public getWithResponse$ = <T = unknown>(url: string, queryParams?: object) =>
     this.http.get<T>(
       `${HttpClientService.API_BASE}${url}${this.serializeQueryParams(queryParams)}`,
       { observe: 'response' }
@@ -42,7 +40,7 @@ export class HttpClientService {
       withCredentials: true,
     });
 
-  public patch$ = <T = any>(url: string, requestBody: any, options = {}) =>
+  public patch$ = <T = unknown>(url: string, requestBody: unknown, options = {}) =>
     this.http.patch<T>(`${HttpClientService.API_BASE}${url}`, requestBody, {
       ...options,
       withCredentials: true,
@@ -53,14 +51,16 @@ export class HttpClientService {
       `${HttpClientService.API_BASE}${url}${this.serializeQueryParams(queryParams)}`,
       { ...options, withCredentials: true }
     );
-  private serializeQueryParams = (params: any) => {
+
+  private serializeQueryParams = (params: object | undefined | null) => {
     if (!params) {
       return '';
     }
-    const validatedParams: any = {};
-    Object.keys(params).forEach((key) => {
-      if (params.keys !== undefined) {
-        validatedParams[key] = params.keys;
+    const p = params as Record<string, unknown>;
+    const validatedParams: Record<string, string> = {};
+    Object.keys(p).forEach((key) => {
+      if (p['keys'] !== undefined) {
+        validatedParams[key] = String(p['keys']);
       }
     });
     return `?${new URLSearchParams(validatedParams).toString().replace(/%2C/g, ',')}`;

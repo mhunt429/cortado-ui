@@ -1,8 +1,8 @@
-export type PlaidLinkMetadata = {
+export interface PlaidLinkMetadata {
   institution: Institution;
-};
+}
 
-export type Institution = {
+export interface Institution {
   name: string;
   institution_id: string;
-};
+}

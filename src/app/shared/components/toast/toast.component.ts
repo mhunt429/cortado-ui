@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ToastService, ToastType } from '../../services/toast.service';
 import { AsyncPipe, NgClass } from '@angular/common';
 
@@ -10,6 +10,5 @@ import { AsyncPipe, NgClass } from '@angular/common';
 })
 export class ToastComponent {
   ToastType = ToastType;
-
-  constructor(public toastService: ToastService) {}
+  toastService = inject(ToastService);
 }

@@ -1,3 +1,3 @@
-export type ConnectorLinkTokenResponse = {
+export interface ConnectorLinkTokenResponse {
   link_token: string;
-};
+}

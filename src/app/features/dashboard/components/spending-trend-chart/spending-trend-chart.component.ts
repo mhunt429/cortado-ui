@@ -50,7 +50,11 @@ export class SpendingTrendChartComponent implements AfterViewInit, OnDestroy {
     return {
       chart: { background: 'transparent' },
       grid: { borderColor: gridColor },
-      xaxis: { labels: { style: { colors: labelColor } }, axisBorder: { color: gridColor }, axisTicks: { color: gridColor } },
+      xaxis: {
+        labels: { style: { colors: labelColor } },
+        axisBorder: { color: gridColor },
+        axisTicks: { color: gridColor },
+      },
       yaxis: { labels: { style: { colors: labelColor } } },
       legend: { labels: { colors: labelColor } },
       tooltip: { theme: isDark ? 'dark' : 'light' },
@@ -59,9 +63,9 @@ export class SpendingTrendChartComponent implements AfterViewInit, OnDestroy {
 
   private initChart(): void {
     const isDark = this.themeService.darkMode();
-    const labels = this.data.map(d => d.label);
-    const daily = this.data.map(d => d.amount);
-    const cumulative = this.data.map(d => d.cumulative);
+    const labels = this.data.map((d) => d.label);
+    const daily = this.data.map((d) => d.amount);
+    const cumulative = this.data.map((d) => d.cumulative);
     const labelColor = isDark ? '#9ca3af' : '#6b7280';
     const gridColor = isDark ? '#374151' : '#f3f4f6';
 
@@ -103,7 +107,10 @@ export class SpendingTrendChartComponent implements AfterViewInit, OnDestroy {
       },
       yaxis: [
         {
-          title: { text: 'Daily ($)', style: { color: labelColor, fontSize: '11px', fontWeight: 400 } },
+          title: {
+            text: 'Daily ($)',
+            style: { color: labelColor, fontSize: '11px', fontWeight: 400 },
+          },
           labels: {
             style: { colors: labelColor, fontSize: '11px' },
             formatter: (val: number) => `$${val.toFixed(0)}`,
@@ -111,7 +118,10 @@ export class SpendingTrendChartComponent implements AfterViewInit, OnDestroy {
         },
         {
           opposite: true,
-          title: { text: 'Cumulative ($)', style: { color: labelColor, fontSize: '11px', fontWeight: 400 } },
+          title: {
+            text: 'Cumulative ($)',
+            style: { color: labelColor, fontSize: '11px', fontWeight: 400 },
+          },
           labels: {
             style: { colors: labelColor, fontSize: '11px' },
             formatter: (val: number) => `$${val.toFixed(0)}`,
