@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 
@@ -8,8 +8,4 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrls: ['./main-layout.component.scss'],
   imports: [RouterOutlet, NavbarComponent],
 })
-export class MainLayoutComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
-}
+export class MainLayoutComponent {}

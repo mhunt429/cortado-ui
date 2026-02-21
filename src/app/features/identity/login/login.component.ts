@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FloatingLabelComponent } from '../../../shared/components/inputs/floating-label/floating-label.component';
 import { AuthService } from '../../../shared/services/auth.service';
 import { Login } from '../../../core/models/identity/login';
@@ -11,11 +11,8 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AlertComponent, AlertType } from '../../../shared/components/alert/alert.component';
-import { passwordMatchValidator } from '../../../core/validators';
 import { BaseApiResponse } from '../../../core/models/baseApiResponse';
 import { AccessToken } from '../../../core/models/identity/accessToken';
-import { switchMap, tap } from 'rxjs';
-import { AppUser } from '../../../core/models/appUser/appUser';
 import {
   LogIn,
   Mail,
@@ -51,9 +48,10 @@ import { CardComponent } from '../../../shared/components/card/card.component';
     },
   ],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
+  private router = inject(Router);
 
   AlertType = AlertType;
 
@@ -64,9 +62,6 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
     rememberMe: new FormControl(false),
   });
-
-  ngOnInit() {}
-  constructor(private router: Router) {}
 
   handleLogin(event: Event) {
     event.preventDefault();

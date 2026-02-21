@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -7,10 +7,6 @@ import { NgClass } from '@angular/common';
   styleUrls: ['./card.component.scss'],
   imports: [NgClass],
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
   @Input() cardClasses = 'rounded-lg shadow p-6';
-
-  constructor() {}
-
-  ngOnInit() {}
 }

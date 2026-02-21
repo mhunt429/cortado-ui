@@ -1,4 +1,4 @@
-export type BankAccount = {
+export interface BankAccount {
   id: number;
   currentBalance: number;
   accountMask: string;
@@ -6,7 +6,7 @@ export type BankAccount = {
   officialName: string;
   subtype: AccountSubtype;
   lastApiSync: Date;
-};
+}
 
 export enum AccountSubtype {
   Checking = 'Checking',

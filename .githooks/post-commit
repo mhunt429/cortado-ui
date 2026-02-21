@@ -1,0 +1,36 @@
+#!/bin/bash
+set -e
+
+# Only run on main
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "$CURRENT_BRANCH" != "main" ]; then
+  exit 0
+fi
+
+# Prevent recursion — skip if this is already a version bump commit
+COMMIT_MSG=$(git log -1 --pretty=%B)
+if echo "$COMMIT_MSG" | grep -qE "^chore: bump version"; then
+  exit 0
+fi
+
+echo "Bumping minor version..."
+
+# Bump minor version in package.json and package-lock.json (no git tag yet)
+npm version minor --no-git-tag-version --silent
+
+VERSION=$(node -p "require('./package.json').version")
+
+echo "Version bumped to v$VERSION"
+
+# Commit the version files
+git add package.json package-lock.json
+git commit -m "chore: bump version to v$VERSION"
+
+# Create an annotated tag
+git tag -a "v$VERSION" -m "Release v$VERSION"
+
+# Push the commit and tag
+git push origin main
+git push origin "v$VERSION"
+
+echo "Tag v$VERSION pushed — GitHub Actions will create the release."

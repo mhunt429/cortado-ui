@@ -8,7 +8,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { PlaidLinkMetadata } from '../../core/models/connector/plaidLinkMetadata';
-import { Observable, of, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { ConnectorService } from '../../shared/services/connector.service';
 import { PlaidLinkTokenRequest } from '../../core/models/connector/plaidLinkTokenRequest';
 import { Router } from '@angular/router';
@@ -19,12 +19,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./connector.component.scss'],
 })
 export class ConnectorComponent implements OnInit, OnChanges, OnDestroy {
-  constructor() {}
   @Input() linkToken = '';
 
   connectorService = inject(ConnectorService);
   router = inject(Router);
-  private plaidHandler: any = null;
+  private plaidHandler: { open: () => void; destroy: () => void } | null = null;
 
   ngOnInit() {
     if (this.linkToken) {
@@ -44,7 +43,7 @@ export class ConnectorComponent implements OnInit, OnChanges, OnDestroy {
     if (this.plaidHandler) {
       try {
         this.plaidHandler.destroy();
-      } catch (e) {
+      } catch (_e) {
         // Handler might already be destroyed
       }
       this.plaidHandler = null;
@@ -53,7 +52,10 @@ export class ConnectorComponent implements OnInit, OnChanges, OnDestroy {
 
   private loadPlaidScript(): Promise<void> {
     return new Promise((resolve, reject) => {
-      if (document.getElementById('plaid-script') && (window as any).Plaid) {
+      if (
+        document.getElementById('plaid-script') &&
+        (window as Window & { Plaid?: unknown }).Plaid
+      ) {
         resolve();
         return;
       }
@@ -61,7 +63,7 @@ export class ConnectorComponent implements OnInit, OnChanges, OnDestroy {
       if (document.getElementById('plaid-script')) {
         // Script tag exists but Plaid not loaded yet, wait for it
         const checkInterval = setInterval(() => {
-          if ((window as any).Plaid) {
+          if ((window as Window & { Plaid?: unknown }).Plaid) {
             clearInterval(checkInterval);
             resolve();
           }
@@ -70,7 +72,7 @@ export class ConnectorComponent implements OnInit, OnChanges, OnDestroy {
         // Timeout after 10 seconds
         setTimeout(() => {
           clearInterval(checkInterval);
-          if ((window as any).Plaid) {
+          if ((window as Window & { Plaid?: unknown }).Plaid) {
             resolve();
           } else {
             reject(new Error('Plaid script timeout'));
@@ -95,7 +97,7 @@ export class ConnectorComponent implements OnInit, OnChanges, OnDestroy {
     if (this.plaidHandler) {
       try {
         this.plaidHandler.destroy();
-      } catch (e) {
+      } catch (_e) {
         // Handler might already be destroyed
       }
       this.plaidHandler = null;
@@ -117,24 +119,30 @@ export class ConnectorComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private createAndOpenPlaidHandler() {
-    if (!(window as any).Plaid) {
+    const plaidWindow = window as Window & {
+      Plaid?: {
+        create: (config: Record<string, unknown>) => { open: () => void; destroy: () => void };
+      };
+    };
+
+    if (!plaidWindow.Plaid) {
       console.error('Plaid is not available');
       return;
     }
 
     try {
-      this.plaidHandler = (window as any).Plaid.create({
+      this.plaidHandler = plaidWindow.Plaid.create({
         token: this.linkToken,
         onSuccess: (public_token: string, metadata: PlaidLinkMetadata) => {
           this.linkInstitution$(public_token, metadata).subscribe();
         },
-        onExit: (err: any, metadata: any) => {
+        onExit: (err: unknown, metadata: unknown) => {
           console.log('Plaid exit:', err, metadata);
           // Clean up handler on exit
           if (this.plaidHandler) {
             try {
               this.plaidHandler.destroy();
-            } catch (e) {
+            } catch (_e) {
               // Handler might already be destroyed
             }
             this.plaidHandler = null;

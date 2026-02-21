@@ -5,7 +5,7 @@ import { BaseApiResponse } from '../../core/models/baseApiResponse';
 import { AppUser } from '../../core/models/appUser/appUser';
 import { map, catchError, of } from 'rxjs';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const authGuard: CanActivateFn = (_route, _state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
@@ -15,7 +15,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
       return true;
     }),
-    catchError((err) => {
+    catchError((_err) => {
       // session load failed, redirect to login
       router.navigate(['/identity/login']);
       return of(false);

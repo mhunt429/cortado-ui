@@ -26,18 +26,20 @@ export class FloatingLabelComponent {
 
   value: string | number | Date | null = '';
 
-  onChange: (value: any) => void = () => {};
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onChange: (value: string | number | Date | null) => void = () => {};
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   private onTouched: () => void = () => {};
 
-  writeValue(value: any): void {
+  writeValue(value: string | number | Date | null): void {
     this.value = value ?? '';
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: (value: string | number | Date | null) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
   onInput(event: Event) {

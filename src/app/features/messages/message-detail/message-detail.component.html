@@ -6,7 +6,9 @@
   } @else if (notFound()) {
     <app-card class="p-8 text-center">
       <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Message not found</h2>
-      <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">This message may have been removed or the link is invalid.</p>
+      <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+        This message may have been removed or the link is invalid.
+      </p>
       <a
         routerLink="/messages"
         class="mt-4 inline-flex items-center gap-2 text-teal-600 dark:text-teal-400 hover:underline"
@@ -31,14 +33,11 @@
           @if (msg.sender) {
             <span>From: {{ msg.sender }}</span>
           }
-          <span>{{ msg.sentAt | date : 'medium' }}</span>
+          <span>{{ msg.sentAt | date: 'medium' }}</span>
         </div>
       </header>
 
-      <div
-        class="message-body mt-4 prose prose-gray dark:prose-invert max-w-none"
-        [innerHTML]="safeBody()"
-      ></div>
+      <div class="message-body mt-4 prose prose-gray dark:prose-invert max-w-none" [innerHTML]="safeBody()"></div>
     </app-card>
   }
 </div>

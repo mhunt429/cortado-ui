@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   ArrowLeft,
   ArrowRight,
@@ -8,11 +8,11 @@ import {
   LucideIconProvider,
 } from 'lucide-angular';
 
-export type ColumnHeader = {
+export interface ColumnHeader {
   name: string;
   sortable: boolean;
   //handleSort$: (name: string) => void;
-};
+}
 
 @Component({
   selector: 'app-paged-table',
@@ -31,15 +31,11 @@ export type ColumnHeader = {
     },
   ],
 })
-export class PagedTableComponent implements OnInit {
+export class PagedTableComponent {
   @Input() columnHeaders: ColumnHeader[] = [];
-  @Input() totalPages: number = 0;
+  @Input() totalPages = 0;
 
-  currentPage: number = 1;
-
-  constructor() {}
-
-  ngOnInit() {}
+  currentPage = 1;
 
   get pages() {
     return Array.from({ length: this.totalPages }, (_, i) => i + 1);

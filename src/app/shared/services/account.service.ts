@@ -10,7 +10,6 @@ import { AccessToken } from '../../core/models/identity/accessToken';
 })
 export class AccountService {
   private httpClient = inject(HttpClientService);
-  constructor() {}
 
   public registerAccount$(
     userRegistration: UserRegistration

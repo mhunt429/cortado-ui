@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FloatingLabelComponent } from '../../../shared/components/inputs/floating-label/floating-label.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { passwordMatchValidator } from '../../../core/validators';
@@ -50,7 +50,7 @@ import { CardComponent } from '../../../shared/components/card/card.component';
     },
   ],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   AlertType = AlertType;
   private accountService = inject(AccountService);
   private router = inject(Router);
@@ -76,10 +76,6 @@ export class RegisterComponent implements OnInit {
     uppercase: false,
     lowercase: false,
   };
-
-  constructor() {}
-
-  ngOnInit() {}
 
   registrationSubmit(event: Event) {
     event.preventDefault();

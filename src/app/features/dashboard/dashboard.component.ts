@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CardComponent } from '../../shared/components/card/card.component';
 import {
   ColumnHeader,
@@ -33,10 +33,10 @@ import { ToastService, ToastType } from '../../shared/services/toast.service';
     },
   ],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   private connectorService = inject(ConnectorService);
   private toastService = inject(ToastService);
-  showEmptyState: boolean = true;
+  showEmptyState = true;
 
   showConnectorOverlay = false;
   linkToken = '';
@@ -56,14 +56,8 @@ export class DashboardComponent implements OnInit {
     { name: 'Category', sortable: true },
     { name: 'Pending', sortable: false },
   ];
-  constructor() {}
-
-  ngOnInit() {
-    //this.toastService.show('This is a test', ToastType.Success, true);
-  }
-
   linkAccount(e: Event) {
-    e.preventDefault;
+    e.preventDefault();
     this.connectorService.getLinkToken$().subscribe({
       next: (result: BaseApiResponse<ConnectorLinkTokenResponse>) => {
         if (result.errors) {

@@ -20,7 +20,7 @@ export class ToastService {
   private toastSubject = new BehaviorSubject<ToastMessage | null>(null);
   toast$ = this.toastSubject.asObservable();
 
-  show(message: string, type: ToastType = ToastType.Success, persisted: boolean = false) {
+  show(message: string, type: ToastType = ToastType.Success, persisted = false) {
     this.toastSubject.next({ message, type });
     if (!persisted) {
       setTimeout(() => this.dismiss(), 5000);

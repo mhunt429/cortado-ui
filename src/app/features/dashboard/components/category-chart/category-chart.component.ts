@@ -10,7 +10,10 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ThemeService } from '../../../../shared/services/theme.service';
-import { FinanceMockService, CategorySpending } from '../../../../shared/services/finance-mock.service';
+import {
+  FinanceMockService,
+  CategorySpending,
+} from '../../../../shared/services/finance-mock.service';
 import ApexCharts from 'apexcharts';
 
 @Component({
@@ -71,9 +74,9 @@ export class CategoryChartComponent implements AfterViewInit, OnDestroy {
     const labelColor = isDark ? '#9ca3af' : '#6b7280';
 
     const options = {
-      series: this.categories.map(c => c.amount),
-      labels: this.categories.map(c => c.category),
-      colors: this.categories.map(c => c.color),
+      series: this.categories.map((c) => c.amount),
+      labels: this.categories.map((c) => c.category),
+      colors: this.categories.map((c) => c.color),
       chart: {
         type: 'donut',
         height: 300,

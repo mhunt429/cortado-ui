@@ -1,7 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, of, map } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClientService } from './http-client.service';
-import { BaseApiResponse } from '../../core/models/baseApiResponse';
 import { Message } from '../../core/models/message/message';
 
 // Mock data for development when messages API is not yet available
@@ -9,7 +8,7 @@ const MOCK_MESSAGES: Message[] = [
   {
     id: '1',
     subject: 'Welcome to Cortado',
-    body: '<p>Hi there!</p><p>Welcome to <strong>Cortado.fi</strong>. We\'re glad to have you.</p><p>Get started by connecting your first account.</p>',
+    body: "<p>Hi there!</p><p>Welcome to <strong>Cortado.fi</strong>. We're glad to have you.</p><p>Get started by connecting your first account.</p>",
     read: false,
     sentAt: '2025-02-18T10:00:00Z',
     sender: 'Cortado Team',
@@ -39,9 +38,7 @@ export class MessagesService {
   private httpClient = inject(HttpClientService);
 
   // In-memory store when using mock data (so markAsRead persists in session)
-  private messagesStore = new Map<string, Message>(
-    MOCK_MESSAGES.map((m) => [m.id, { ...m }])
-  );
+  private messagesStore = new Map<string, Message>(MOCK_MESSAGES.map((m) => [m.id, { ...m }]));
 
   /**
    * Fetch all messages for the current user.

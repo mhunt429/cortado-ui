@@ -1,5 +1,5 @@
-export type Login = {
+export interface Login {
   email: string;
   password: string;
   rememberMe: boolean;
-};
+}

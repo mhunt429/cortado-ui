@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   Sparkles,
@@ -43,7 +43,7 @@ import { ThemeService } from '../../shared/services/theme.service';
     },
   ],
 })
-export class LandingPageComponent implements OnInit {
+export class LandingPageComponent {
   protected themeService = inject(ThemeService);
 
   features = [
@@ -80,10 +80,6 @@ export class LandingPageComponent implements OnInit {
     'Achieve your financial goals faster',
     'Bank-level security and encryption',
   ];
-
-  constructor() {}
-
-  ngOnInit() {}
 
   toggleDarkMode() {
     this.themeService.toggleDarkMode();
