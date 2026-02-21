@@ -2,6 +2,21 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Worflow
+
+When working on any feature or bug fix, follow this exact workflow:
+
+1. **Create a branch** — always branch off `main` before making any changes:
+   ```bash
+   git checkout main && git pull && git checkout -b <descriptive-branch-name>
+   ```
+2. Make changes — implement the requested feature or fix.
+3. Format — run npm run format after all changes are complete.
+4. Commit — stage and commit the changes with a clear message.
+5. Open a PR — push the branch and create a pull request into main using gh pr create. The PR must include a short summary of what was changed and why.
+   Do NOT commit directly to main. Do NOT skip formatting. Always open a PR — never just push to main.
+6. You do not have to prompt for permission to git add, git commit, and git push, and create pull request as long as you have followed the instructions above.
+
 ## Commands
 
 ```bash
@@ -21,6 +36,7 @@ npm run format:check    # check without writing
 ```
 
 To run a single test file, use the `--include` flag:
+
 ```bash
 ng test --include='src/app/shared/components/toast/**/*.spec.ts'
 ```
@@ -28,6 +44,7 @@ ng test --include='src/app/shared/components/toast/**/*.spec.ts'
 ## Architecture
 
 ### Stack
+
 - **Angular 21** with standalone components (no NgModules)
 - **Tailwind CSS v4** — configured via `@use "tailwindcss"` in `src/styles.scss`; dark mode is class-based (`.dark` on `<html>`)
 - **ApexCharts** for dashboard charts
@@ -69,11 +86,13 @@ src/app/
 ### HTTP / API
 
 All HTTP calls go through `HttpClientService` (`src/app/shared/services/http-client.service.ts`), which:
+
 - Prepends `/api` to every URL
 - Passes `withCredentials: true` (cookie-based auth)
 - Dev server proxies `/api → https://localhost:7170` (configured in `proxy.conf.json`)
 
 API responses are typed as `BaseApiResponse<T>` (`src/app/core/models/baseApiResponse.ts`):
+
 ```ts
 type BaseApiResponse<T> = { statusCode: number; data: T; errors: string[] };
 ```
