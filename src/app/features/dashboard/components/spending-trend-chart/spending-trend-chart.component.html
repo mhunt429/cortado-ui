@@ -1,13 +1,13 @@
 <div class="p-6">
   <div class="flex items-center justify-between mb-1">
     <div>
-      <h2 class="text-base font-semibold text-gray-900 dark:text-white">Spending This Month</h2>
-      <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+      <h2 class="text-base font-semibold text-stone-900 dark:text-white">Spending This Month</h2>
+      <p class="text-xs text-stone-500 dark:text-stone-400 mt-0.5">
         Feb 1 – Feb 20, 2026 · bars = daily, line = cumulative
       </p>
     </div>
     <span
-      class="text-xs font-medium px-2.5 py-1 rounded-full bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300"
+      class="text-xs font-medium px-2.5 py-1 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300"
     >
       MTD ${{ data[data.length - 1].cumulative | number: '1.2-2' }}
     </span>

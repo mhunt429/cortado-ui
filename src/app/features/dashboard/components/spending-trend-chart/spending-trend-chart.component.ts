@@ -45,8 +45,8 @@ export class SpendingTrendChartComponent implements AfterViewInit, OnDestroy {
   }
 
   private buildThemeOptions(isDark: boolean) {
-    const labelColor = isDark ? '#9ca3af' : '#6b7280';
-    const gridColor = isDark ? '#374151' : '#f3f4f6';
+    const labelColor = isDark ? '#a8a29e' : '#78716c';
+    const gridColor = isDark ? '#44403c' : '#f5f5f4';
     return {
       chart: { background: 'transparent' },
       grid: { borderColor: gridColor },
@@ -66,8 +66,8 @@ export class SpendingTrendChartComponent implements AfterViewInit, OnDestroy {
     const labels = this.data.map((d) => d.label);
     const daily = this.data.map((d) => d.amount);
     const cumulative = this.data.map((d) => d.cumulative);
-    const labelColor = isDark ? '#9ca3af' : '#6b7280';
-    const gridColor = isDark ? '#374151' : '#f3f4f6';
+    const labelColor = isDark ? '#a8a29e' : '#78716c';
+    const gridColor = isDark ? '#44403c' : '#f5f5f4';
 
     const options = {
       series: [
@@ -82,7 +82,7 @@ export class SpendingTrendChartComponent implements AfterViewInit, OnDestroy {
         fontFamily: 'inherit',
         animations: { enabled: true, easing: 'easeinout', speed: 700 },
       },
-      colors: ['#14b8a6', '#0d9488'],
+      colors: ['#d97706', '#b45309'],
       stroke: { width: [0, 2.5], curve: 'smooth' },
       fill: {
         type: ['solid', 'gradient'],

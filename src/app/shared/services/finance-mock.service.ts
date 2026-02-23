@@ -541,7 +541,7 @@ export class FinanceMockService {
 
   getCategorySpending(): CategorySpending[] {
     const colorMap: Record<string, string> = {
-      Housing: '#14b8a6',
+      Housing: '#d97706',
       Groceries: '#0891b2',
       'Dining Out': '#8b5cf6',
       Transportation: '#f59e0b',
@@ -563,7 +563,7 @@ export class FinanceMockService {
       .map(([category, amount]) => ({
         category,
         amount: parseFloat(amount.toFixed(2)),
-        color: colorMap[category] ?? '#6b7280',
+        color: colorMap[category] ?? '#78716c',
       }))
       .sort((a, b) => b.amount - a.amount);
   }
