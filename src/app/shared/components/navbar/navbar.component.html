@@ -1,10 +1,10 @@
-<nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 relative z-50">
+<nav class="bg-white dark:bg-stone-800 shadow-sm border-b border-stone-200 dark:border-stone-700 relative z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16">
       <!-- Logo and Desktop Navigation -->
       <div class="flex items-center">
         <img src="cortado.jpg" alt="Cortado.fi" class="h-6 w-6 pr-2" />
-        <h1 class="text-2xl font-bold text-gray-900 dark:text-white mr-8">Cortado.fi</h1>
+        <h1 class="text-2xl font-bold text-stone-900 dark:text-white mr-8">Cortado.fi</h1>
 
         <!-- Desktop Navigation -->
         <div class="hidden md:flex space-x-1">
@@ -15,9 +15,9 @@
                 <button
                   (click)="toggleTransactionsDropdown()"
                   [ngClass]="{
-                    'bg-teal-100 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400':
+                    'bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400':
                       isCurrentPage('transactions') || isCurrentPage('recurring-transactions'),
-                    'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700':
+                    'text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700':
                       !isCurrentPage('transactions') && !isCurrentPage('recurring-transactions'),
                   }"
                   class="flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors"
@@ -34,16 +34,16 @@
                 <!-- Dropdown Menu -->
                 @if (transactionsDropdownOpen()) {
                   <div
-                    class="absolute top-full left-0 mt-1 w-56 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-50"
+                    class="absolute top-full left-0 mt-1 w-56 bg-white dark:bg-stone-800 rounded-lg shadow-lg border border-stone-200 dark:border-stone-700 py-1 z-50"
                   >
                     @for (dropdownItem of item.dropdownItems; track dropdownItem.id) {
                       <button
                         (click)="navigateToDropdownItem(item, dropdownItem)"
                         [ngClass]="{
-                          'bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400': isCurrentDropdownPage(
+                          'bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400': isCurrentDropdownPage(
                             dropdownItem.id
                           ),
-                          'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700':
+                          'text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700':
                             !isCurrentDropdownPage(dropdownItem.id),
                         }"
                         class="w-full flex items-center px-4 py-2 text-sm transition-colors"
@@ -62,8 +62,10 @@
               <button
                 (click)="navigateToPage(item)"
                 [ngClass]="{
-                  'bg-teal-100 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400': isCurrentPage(item.id),
-                  'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700': !isCurrentPage(item.id),
+                  'bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400': isCurrentPage(item.id),
+                  'text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700': !isCurrentPage(
+                    item.id
+                  ),
                 }"
                 class="flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors"
               >
@@ -82,7 +84,7 @@
           <!-- Notifications -->
           <button
             (click)="handleNotificationsClick()"
-            class="relative p-2 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors rounded-lg"
+            class="relative p-2 text-stone-500 hover:text-stone-600 dark:text-stone-400 dark:hover:text-stone-300 transition-colors rounded-lg"
           >
             <lucide-angular name="bell" class="h-5 w-5"></lucide-angular>
             @if (unreadNotifications() > 0) {
@@ -97,7 +99,7 @@
           <!-- Dark Mode Toggle -->
           <button
             (click)="toggleDarkMode()"
-            class="p-2 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors rounded-lg"
+            class="p-2 text-stone-500 hover:text-stone-600 dark:text-stone-400 dark:hover:text-stone-300 transition-colors rounded-lg"
           >
             @if (themeService.darkMode()) {
               <lucide-angular name="sun" class="h-5 w-5"></lucide-angular>
@@ -108,18 +110,18 @@
 
           <!-- Settings -->
           <button
-            class="p-2 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors rounded-lg"
+            class="p-2 text-stone-500 hover:text-stone-600 dark:text-stone-400 dark:hover:text-stone-300 transition-colors rounded-lg"
           >
             <lucide-angular name="settings" class="h-5 w-5"></lucide-angular>
           </button>
 
           <!-- User Name -->
-          <span class="text-sm font-medium text-gray-700 dark:text-gray-200">{{ userName() }}</span>
+          <span class="text-sm font-medium text-stone-700 dark:text-stone-200">{{ userName() }}</span>
 
           <!-- Logout -->
           <button
             (click)="handleLogout()"
-            class="p-2 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors rounded-lg"
+            class="p-2 text-stone-500 hover:text-stone-600 dark:text-stone-400 dark:hover:text-stone-300 transition-colors rounded-lg"
           >
             <lucide-angular name="log-out" class="h-5 w-5"></lucide-angular>
           </button>
@@ -128,7 +130,7 @@
         <!-- Mobile menu button -->
         <button
           (click)="toggleMobileMenu()"
-          class="md:hidden p-2 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors rounded-lg"
+          class="md:hidden p-2 text-stone-500 hover:text-stone-600 dark:text-stone-400 dark:hover:text-stone-300 transition-colors rounded-lg"
         >
           @if (mobileMenuOpen) {
             <lucide-angular name="x" class="h-6 w-6"></lucide-angular>
@@ -155,13 +157,13 @@
 
     <!-- Mobile Menu Panel -->
     <div
-      class="fixed top-16 left-0 right-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-lg z-50 md:hidden max-h-[calc(100vh-4rem)] overflow-y-auto"
+      class="fixed top-16 left-0 right-0 bg-white dark:bg-stone-800 border-b border-stone-200 dark:border-stone-700 shadow-lg z-50 md:hidden max-h-[calc(100vh-4rem)] overflow-y-auto"
     >
       <!-- Close Button -->
       <div class="flex justify-end px-4 pt-4">
         <button
           (click)="toggleMobileMenu()"
-          class="p-2 text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors rounded-lg"
+          class="p-2 text-stone-500 hover:text-stone-600 dark:text-stone-400 dark:hover:text-stone-300 transition-colors rounded-lg"
           aria-label="Close menu"
         >
           <lucide-angular name="x" class="h-6 w-6"></lucide-angular>
@@ -178,9 +180,9 @@
                 <button
                   (click)="toggleMobileTransactionsDropdown()"
                   [ngClass]="{
-                    'bg-teal-100 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400':
+                    'bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400':
                       isCurrentPage('transactions') || isCurrentPage('recurring-transactions'),
-                    'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700':
+                    'text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700':
                       !isCurrentPage('transactions') && !isCurrentPage('recurring-transactions'),
                   }"
                   class="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-colors"
@@ -198,15 +200,15 @@
 
                 <!-- Mobile Dropdown Menu -->
                 @if (mobileTransactionsDropdownOpen()) {
-                  <div class="ml-4 mt-1 space-y-1 border-l-2 border-gray-200 dark:border-gray-700 pl-2">
+                  <div class="ml-4 mt-1 space-y-1 border-l-2 border-stone-200 dark:border-stone-700 pl-2">
                     @for (dropdownItem of item.dropdownItems; track dropdownItem.id) {
                       <button
                         (click)="navigateToDropdownItem(item, dropdownItem)"
                         [ngClass]="{
-                          'bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400': isCurrentDropdownPage(
+                          'bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400': isCurrentDropdownPage(
                             dropdownItem.id
                           ),
-                          'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700':
+                          'text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700':
                             !isCurrentDropdownPage(dropdownItem.id),
                         }"
                         class="w-full flex items-center px-3 py-2 rounded-lg text-sm transition-colors"
@@ -225,8 +227,10 @@
               <button
                 (click)="navigateToPage(item)"
                 [ngClass]="{
-                  'bg-teal-100 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400': isCurrentPage(item.id),
-                  'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700': !isCurrentPage(item.id),
+                  'bg-amber-100 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400': isCurrentPage(item.id),
+                  'text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700': !isCurrentPage(
+                    item.id
+                  ),
                 }"
                 class="w-full flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors"
               >
@@ -238,11 +242,11 @@
         </div>
 
         <!-- Mobile Actions -->
-        <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 space-y-1">
+        <div class="mt-4 pt-4 border-t border-stone-200 dark:border-stone-700 space-y-1">
           <!-- Notifications -->
           <button
             (click)="handleNotificationsClick(); toggleMobileMenu()"
-            class="w-full flex items-center px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            class="w-full flex items-center px-3 py-2 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg transition-colors"
           >
             <lucide-angular name="bell" class="h-4 w-4 mr-3"></lucide-angular>
             Notifications
@@ -258,7 +262,7 @@
           <!-- Dark Mode Toggle -->
           <button
             (click)="toggleDarkMode(); toggleMobileMenu()"
-            class="w-full flex items-center px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            class="w-full flex items-center px-3 py-2 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg transition-colors"
           >
             @if (themeService.darkMode()) {
               <lucide-angular name="sun" class="h-4 w-4 mr-3"></lucide-angular>
@@ -270,19 +274,19 @@
 
           <!-- Settings -->
           <button
-            class="w-full flex items-center px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            class="w-full flex items-center px-3 py-2 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg transition-colors"
           >
             <lucide-angular name="settings" class="h-4 w-4 mr-3"></lucide-angular>
             Settings
           </button>
 
           <!-- User Info -->
-          <div class="px-3 py-2 text-sm text-gray-500 dark:text-gray-400">Signed in as {{ userName() }}</div>
+          <div class="px-3 py-2 text-sm text-stone-500 dark:text-stone-400">Signed in as {{ userName() }}</div>
 
           <!-- Logout -->
           <button
             (click)="handleLogout()"
-            class="w-full flex items-center px-3 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            class="w-full flex items-center px-3 py-2 text-stone-600 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-700 rounded-lg transition-colors"
           >
             <lucide-angular name="log-out" class="h-4 w-4 mr-3"></lucide-angular>
             Logout
