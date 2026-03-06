@@ -6,9 +6,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./primary-button.component.scss'],
 })
 export class PrimaryButtonComponent {
-  @Output() onClick = new EventEmitter<Event>();
+  @Output() handleClick = new EventEmitter<Event>();
 
   onClickButton(event: Event) {
-    this.onClick.emit(event);
+    this.handleClick.emit(event);
   }
 }

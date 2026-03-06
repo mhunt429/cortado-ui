@@ -3,7 +3,7 @@
     <div class="text-2xl font-semibold text-stone-900 dark:text-white">No data available</div>
     <p class="pt-4 text-sm text-stone-600 dark:text-stone-400">Get started by connecting an account.</p>
     <p class="pt-4">
-      <app-primary-button (onClick)="linkAccount($event)">
+      <app-primary-button (handleClick)="linkAccount($event)">
         <div class="flex items-center">
           <lucide-angular name="plus" class="h-4 w-4 ml-1"></lucide-angular>
           <span class="pl-2"> Connect Account</span>
