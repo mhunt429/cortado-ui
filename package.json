@@ -1,6 +1,6 @@
 {
   "name": "cortado-ui",
-  "version": "2026.3.0",
+  "version": "2026.4.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
