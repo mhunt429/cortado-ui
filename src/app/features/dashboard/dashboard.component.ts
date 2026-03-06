@@ -60,12 +60,17 @@ export class DashboardComponent {
     e.preventDefault();
     this.connectorService.getLinkToken$().subscribe({
       next: (result: BaseApiResponse<ConnectorLinkTokenResponse>) => {
-        if (result.errors) {
+        console.log('[Dashboard] getLinkToken$ result:', result);
+        if (result.errors?.length) {
           this.toastService.show('Unable to link institution.', ToastType.Error);
         } else {
-          this.linkToken = result.data.link_token;
+          this.linkToken = result.data.linkToken;
           this.showConnectorOverlay = true;
         }
+      },
+      error: (err) => {
+        console.error('[Dashboard] getLinkToken$ error:', err);
+        this.toastService.show('Unable to link institution.', ToastType.Error);
       },
     });
   }
