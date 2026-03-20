@@ -14,7 +14,7 @@ import {
   FinanceMockService,
   CategorySpending,
 } from '../../../../shared/services/finance-mock.service';
-import ApexCharts from 'apexcharts';
+import ApexCharts, { ApexOptions } from 'apexcharts';
 
 @Component({
   selector: 'app-category-chart',
@@ -130,7 +130,7 @@ export class CategoryChartComponent implements AfterViewInit, OnDestroy {
       stroke: { width: 2, colors: [isDark ? '#1f2937' : '#ffffff'] },
     };
 
-    this.chart = new ApexCharts(this.chartEl.nativeElement, options);
+    this.chart = new ApexCharts(this.chartEl.nativeElement, options as ApexOptions);
     this.chart.render();
   }
 

@@ -11,7 +11,7 @@ import {
 import { isPlatformBrowser, DecimalPipe } from '@angular/common';
 import { ThemeService } from '../../../../shared/services/theme.service';
 import { FinanceMockService } from '../../../../shared/services/finance-mock.service';
-import ApexCharts from 'apexcharts';
+import ApexCharts, { ApexOptions } from 'apexcharts';
 
 @Component({
   selector: 'app-spending-trend-chart',
@@ -141,7 +141,7 @@ export class SpendingTrendChartComponent implements AfterViewInit, OnDestroy {
       },
     };
 
-    this.chart = new ApexCharts(this.chartEl.nativeElement, options);
+    this.chart = new ApexCharts(this.chartEl.nativeElement, options as ApexOptions);
     this.chart.render();
   }
 
