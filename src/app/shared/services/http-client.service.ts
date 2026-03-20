@@ -59,8 +59,8 @@ export class HttpClientService {
     const p = params as Record<string, unknown>;
     const validatedParams: Record<string, string> = {};
     Object.keys(p).forEach((key) => {
-      if (p['keys'] !== undefined) {
-        validatedParams[key] = String(p['keys']);
+      if (p[key] !== undefined) {
+        validatedParams[key] = String(p[key]);
       }
     });
     return `?${new URLSearchParams(validatedParams).toString().replace(/%2C/g, ',')}`;
